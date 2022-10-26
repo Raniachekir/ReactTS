@@ -1,25 +1,27 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import AddEdit from './pages/AddEdit';
+import Home from './pages/Home';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import View from './pages/View';
+import Header from './Components/Header';
+import {createTheme, ThemeProvider } from "@mui/material" 
+//import { ThemeProvider } from '@emotion/react';
 function App() {
+  const theme = createTheme({});  
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route  path='/' element={<Home/>} />
+      <Route path='/add' element={<AddEdit/>} />
+      <Route path='/update/:id' element={<AddEdit/>} />
+      <Route path='/view/:id' element={<View/>} />
+    </Routes>
+    </BrowserRouter>
     </div>
+    </ThemeProvider>
   );
 }
 
